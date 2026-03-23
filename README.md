@@ -30,11 +30,11 @@ https://miro.com/welcomeonboard/cWROUWRUUWxBZ045U3dNc1NqS3hTekpKY01rOWQ2MWtIREVa
 
 
 
-# koden:
+# koden (der rent faktisk virker):
 
 
 
-/*
+  /*
   Reading CO2, humidity and temperature from the SCD4x
   By: Paul Clark
   Based on earlier code by: Nathan Seidle
@@ -59,36 +59,16 @@ https://miro.com/welcomeonboard/cWROUWRUUWxBZ045U3dNc1NqS3hTekpKY01rOWQ2MWtIREVa
 #include "SparkFun_SCD4x_Arduino_Library.h" //Click here to get the library: http://librarymanager/All#SparkFun_SCD4x
 SCD4x mySensor;
 
-const int ledPin = A0; 
-const int lydPin = 9
+const int ledPin = 2; 
+const int ledPin2 = 4;
 int co2;
-
-
-
-
-// notes in the melody:
-int melody[] = {
- 262, 196, 196, 220, 196, 0, 247, 262
-};
-
-// note durations: 4 = quarter note, 8 = eighth note, etc.:
-int noteDurations[] = {
-  4, 8, 8, 4, 4, 4, 4, 4
-};
-
-
+int ledState2;
+int ledState;
 void setup()
 {
-
-
-
-  
   Serial.begin(115200);
   Serial.println(F("SCD4x Example"));
   Wire.begin();
-
-  pinMode(ledPin, OUTPUT);
-pinMode(lydPin, OUTPUT);
 
   //mySensor.enableDebugging(); // Uncomment this line to get helpful debug messages on Serial
 
@@ -101,30 +81,30 @@ pinMode(lydPin, OUTPUT);
   }
 
   //The SCD4x has data ready every five seconds
+
+pinMode(ledPin2, OUTPUT);
+
+
+//her begynder lyddelen
+
+
+
+
+
+
+
+
+
 }
 
 void loop()
 {
-
-
-    long sum = 0;
-    for(int i=0; i<32; i++)
-    {
-        sum += analogRead(A3);
-    }
-
-    sum >>= 5;
-
-    Serial.println(sum);
-  
-
-
-
-
   if (mySensor.readMeasurement()) // readMeasurement will return true when fresh data is available
   {
     Serial.println();
+
 co2=mySensor.getCO2();
+
     Serial.print(F("CO2(ppm):"));
     Serial.print(mySensor.getCO2());
 
@@ -136,29 +116,37 @@ co2=mySensor.getCO2();
 
     Serial.println();
 
+    if(co2>1400)
+    {
 
-if(co2>1400){
+ledState2 = HIGH;
 
-  digtialWrite(lydPin,HIGH);
+    }
+    else
+    ledState2 = LOW;
 
-}
-else{
-digitalWrite(lydPin,LOW);}
+  digitalWrite(ledPin2,ledState2);
 
-
-}
-
-
-  
+  }
   else
     Serial.print(F(""));
 
   delay(250);
 
+  //her begynder lyddelen
 
-  int ledState;
+ long sum = 0;
+    for(int i=0; i<32; i++)
+    {
+        sum += analogRead(A0);
+    }
 
-if (sum>250)
+    sum >>= 5;
+
+    Serial.println(sum);
+  
+
+if (sum>200)
 {
   ledState = HIGH;   
 }
@@ -166,5 +154,8 @@ if (sum>250)
     ledState = LOW;   
 
 digitalWrite(ledPin,ledState);
+
+
+
 
 }
