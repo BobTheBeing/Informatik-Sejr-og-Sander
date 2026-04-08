@@ -13,4 +13,4 @@ Vi mangler en højtaler til arduinoen
 
 
 Linket: til vores miroboard er:
-https://miro.com/welcomeonboard/cWROUWRUUWxBZ045U3dNc1NqS3hTekpKY01rOWQ2MWtIREVacXdsTWJNdkhIYjB6VGVpM2x5bTl2dFJoRkhacFRrZ3VOcjZOMTNySGRDY2Q4bHRhSm9kaWdaTEJjVmVNQldHUDUveTdtL2RqekZtWXRhNDlsQVpubzhhRWZFNmhBd044SHFHaVlWYWk0d3NxeHNmeG9BPT0hdjE=?share_link_id=681320653072
+https://miro.com/app/board/uXjVGyii4VI=/
