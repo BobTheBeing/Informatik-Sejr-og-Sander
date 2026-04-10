@@ -25,13 +25,14 @@ SCD4x mySensor;
 
 const int ledPin = 2; 
 const int ledPin2 = 4;
-int co2;
+const int ledtryk = 3;
+int co2, fugt, temp, sum;
 int ledState2;
 int ledState;
 void setup()
 {
   Serial.begin(115200);
-  Serial.println(F("SCD4x Example"));
+  //Serial.println(F("SCD4x Example"));
   Wire.begin();
 
   //mySensor.enableDebugging(); // Uncomment this line to get helpful debug messages on Serial
@@ -49,6 +50,8 @@ void setup()
 pinMode(ledPin2, OUTPUT);
 
 
+Serial.println("relativt støjniveau;co2 (ppm);temprature (C);relativ luftfugtighed (%RH)");
+
 //her begynder lyddelen
 
 
@@ -65,22 +68,31 @@ void loop()
 {
   if (mySensor.readMeasurement()) // readMeasurement will return true when fresh data is available
   {
-    Serial.println();
+   // Serial.println(mip);
 
 co2=mySensor.getCO2();
+temp=mySensor.getTemperature();
+fugt=mySensor.getHumidity();
 
-    Serial.print(F("CO2(ppm):"));
-    Serial.print(mySensor.getCO2());
+ }
+    //Serial.print(F(""));
 
-    Serial.print(F("\tTemperature(C):"));
-    Serial.print(mySensor.getTemperature(), 1);
 
-    Serial.print(F("\tHumidity(%RH):"));
-    Serial.print(mySensor.getHumidity(), 1);
+   // Serial.print(F("CO2(ppm):"));
+    //Serial.print(mySensor.getCO2());
 
-    Serial.println();
+    //Serial.print(F("\tTemperature(C):"));
+    //Serial.print(mySensor.getTemperature(), 1);
 
-    if(co2>1400)
+   // Serial.print(F("\tHumidity(%RH):"));
+   // Serial.print(mySensor.getHumidity(), 1);
+
+   // Serial.println();
+  
+    if (digitalRead(ledtryk)==LOW){
+      ledState2 = LOW;// continue(60000);
+    }
+    else if(co2>1400)
     {
 
 ledState2 = HIGH;
@@ -91,9 +103,10 @@ ledState2 = HIGH;
 
   digitalWrite(ledPin2,ledState2);
 
-  }
-  else
-    Serial.print(F(""));
+  //if(digitalRead(ledtryk)==HIGH){}
+
+ 
+ 
 
   delay(250);
 
@@ -107,8 +120,12 @@ ledState2 = HIGH;
 
     sum >>= 5;
 
-    Serial.println(sum);
-  
+    Serial.println(String(sum)+";"+String(co2)+";"+String(temp)+";"+String(fugt));
+   /* Serial.println("co2 (ppm): "+ String(co2));
+    Serial.println("temprature (C): "+ String(temp));
+    Serial.println("relativ luftfugtighed(%RH): "+ String(fugt));
+    Serial.println();
+  test();*/
 
 if (sum>200)
 {
@@ -122,4 +139,7 @@ digitalWrite(ledPin,ledState);
 
 
 
+}
+void test(){
+  return;
 }
