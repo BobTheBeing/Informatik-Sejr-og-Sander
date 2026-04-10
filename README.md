@@ -29,3 +29,9 @@ Deruover har vi downloadet github-desktop. Så fra nu af bliver det lidt nemmere
 
 ### Arbejde den 8/4
 Det ændelige flowchart er lavet. Det mangler måske nogle få justeringer
+
+
+### billeder
+Billede af de grafer vi har fået lavet i excel vha. 
+<img width="1140" height="728" alt="image" src="https://github.com/user-attachments/assets/61c00454-6c8f-43bc-80e8-cdb5134b12a2" />
+
