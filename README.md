@@ -9,7 +9,7 @@ Vi vil gerne finde ud af, hvor meget CO_2 der er i luften. Det gør vi med en CO
 
 Vi har lånt 1 arduino, 1 mikrofon, 1 kanp/LED, 1 CO2 måler, 3 ledninger til input og output, 1 ledning mellem arduiono og computer.
 
-Vi mangler en højtaler til arduinoen
+/* Vi mangler en højtaler til arduinoen. */  vi havde ikke brug for højtaleren alligevel, for at vise det vi skulle. til gengæld har vi en buzzer.
 
 
 Linket: til vores miroboard er:
